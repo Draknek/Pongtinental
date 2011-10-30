@@ -106,8 +106,8 @@ package
 			x2 = x + vx;
 			y2 = y + vy;
 			
-			var p1: Paddle = game.player1;
-			var p2: Paddle = game.player2;
+			var p1: Player = game.player1;
+			var p2: Player = game.player2;
 			
 			if (test(p1.x, p1.top, p1.x, p1.bottom, 6))
 			{

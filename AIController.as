@@ -2,12 +2,12 @@ package
 {
 	public class AIController extends Controller
 	{
-		private var paddle: Paddle;
+		private var paddle: Player;
 		private var game: Game;
 		
 		private var targetY: Number = 240;
 		
-		public function AIController (_paddle: Paddle, _game: Game)
+		public function AIController (_paddle: Player, _game: Game)
 		{
 			paddle = _paddle;
 			game = _game;

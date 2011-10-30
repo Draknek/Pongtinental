@@ -3,7 +3,7 @@ package
 	import flash.display.*;
 	import flash.events.*;
 	
-	public class Paddle extends Shape
+	public class Player extends Shape
 	{
 		public var size: Number = 30;
 		public var speed: Number = 5;
@@ -14,7 +14,7 @@ package
 		
 		private var controller: Controller;
 		
-		public function Paddle (_x: Number, _game: Game)
+		public function Player (_x: Number, _game: Game)
 		{
 			graphics.lineStyle(4, 0x00FF00);
 			graphics.moveTo(0, -size);

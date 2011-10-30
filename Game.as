@@ -6,8 +6,8 @@ package
 	
 	public class Game extends Screen
 	{
-		public var player1: Paddle;
-		public var player2: Paddle;
+		public var player1: Player;
+		public var player2: Player;
 		
 		public var score1: NumberTextField;
 		public var score2: NumberTextField;
@@ -18,6 +18,8 @@ package
 		private var gameOver: Boolean = false;
 		
 		public var attractMode: Boolean = false;
+		
+		public var lines:Array = [];
 		
 		public function Game (_attractMode: Boolean = false)
 		{
@@ -35,8 +37,10 @@ package
 			lineBall = new LineBall(this);
 			addChild(lineBall.canvas);
 			
-			player1 = new Paddle(20, this);
-			player2 = new Paddle(620, this);
+			lines.push(lineBall);
+			
+			player1 = new Player(20, this);
+			player2 = new Player(620, this);
 			
 			addChild(player1);
 			addChild(player2);
