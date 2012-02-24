@@ -1,4 +1,4 @@
-OUTPUT := trong.swf
+OUTPUT := pong.swf
 
 ifdef DEBUG
 DEBUG_FLAG := true

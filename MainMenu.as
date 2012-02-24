@@ -15,7 +15,7 @@ package
 			
 			addChild(demoGame);
 			
-			addChild(new MyTextField(320, 20, "Trong", "center", 150));
+			addChild(new MyTextField(320, 20, "Pongtinental", "center", 100));
 			
 			//addChild(new MyTextField(320, 300, "Press any key to begin", "center", 25));
 			
