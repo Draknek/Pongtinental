@@ -20,15 +20,19 @@ package
 		
 		private var respawn: Boolean = false;
 		
+		public var trail: Trail;
+		
 		public function Ball (_game: Game)
 		{
 			game = _game;
 			
-			graphics.beginFill(0x00FF00);
+			graphics.beginFill(0xFFFFFF);
 			graphics.drawCircle(0, 0, 4);
 			graphics.endFill();
 			
 			spawn();
+			
+			trail = new Trail(x,y);
 		}
 		
 		private function spawn (): void
@@ -168,6 +172,8 @@ package
 			
 			x = x2;// - 0.01 * vx;
 			y = y2;// - 0.01 * vy;
+			
+			trail.update(x,y);
 		}
 	}
 }

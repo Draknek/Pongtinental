@@ -46,6 +46,7 @@ package
 			
 			ball = new Ball(this);
 			addChild(ball);
+			addChild(ball.trail);
 		}
 		
 		public override function update (): void
