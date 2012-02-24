@@ -26,6 +26,10 @@ package
 			
 			if (paddle.x < 320)
 			{
+				if (Settings.player1Controller == "AI") {
+					return new AIController(paddle, game);
+				}
+				
 				return new KeyboardController(Settings.player1Up, Settings.player1Down, Settings.player1Left, Settings.player1Right);
 			}
 			else
