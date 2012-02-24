@@ -13,7 +13,6 @@ package
 		public var score2: NumberTextField;
 		
 		public var ball: Ball;
-		public var lineBall: LineBall;
 		
 		private var gameOver: Boolean = false;
 		
@@ -34,10 +33,10 @@ package
 				addChild(score2);
 			}
 			
-			lineBall = new LineBall(this);
+			/*lineBall = new LineBall(this);
 			addChild(lineBall.canvas);
 			
-			lines.push(lineBall);
+			lines.push(lineBall);*/
 			
 			player1 = new Player(20, this);
 			player2 = new Player(620, this);
@@ -59,7 +58,9 @@ package
 			player1.update();
 			player2.update();
 			
-			lineBall.update();
+			for each (var line:LineBall in lines) {
+				line.update();
+			}
 			
 			ball.update();
 			

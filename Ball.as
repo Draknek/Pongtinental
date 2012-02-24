@@ -156,12 +156,14 @@ package
 			test(0, 480, 640, 480, 4); // bottom
 			test(640, 0, 0, 0, 4); // top
 			
-			var xArr: Array = game.lineBall.xArray;
-			var yArr: Array = game.lineBall.yArray;
+			for each (var lineBall:LineBall in game.lines) {
+				var xArr: Array = lineBall.xArray;
+				var yArr: Array = lineBall.yArray;
 			
-			for (var i: uint = 0; i < xArr.length - 1; i++)
-			{
-				test(xArr[i], yArr[i], xArr[i+1], yArr[i+1]);
+				for (var i: uint = 0; i < xArr.length - 1; i++)
+				{
+					test(xArr[i], yArr[i], xArr[i+1], yArr[i+1]);
+				}
 			}
 			
 			x = x2;// - 0.01 * vx;
