@@ -11,7 +11,7 @@ package
 		public var xArray: Array;
 		public var yArray: Array;
 		
-		private var maxLength: Number = 800;
+		private var maxLength: Number = 1800;
 		
 		private var vx: Number;
 		private var vy: Number;
@@ -105,6 +105,8 @@ package
 		
 		public function update (): void
 		{
+			var i: uint
+			
 			xArray.pop();
 			yArray.pop();
 			
@@ -113,6 +115,12 @@ package
 			
 			x2 = x1 + vx;
 			y2 = y1 + vy;
+			
+			for each (var other:LineBall in game.lines) {
+				for (i = 0; i < other.xArray.length - 1; i++) {
+					test(other.xArray[i], other.yArray[i], other.xArray[i+1], other.yArray[i+1]);
+				}
+			}
 			
 			var p1: Player = game.player1;
 			var p2: Player = game.player2;
@@ -147,7 +155,7 @@ package
 			
 			var length: Number = 0;
 			
-			for (var i: uint = 0; i < xArray.length - 1; i++)
+			for (i = 0; i < xArray.length - 1; i++)
 			{
 				var dx: Number = xArray[i] - xArray[i+1];
 				var dy: Number = yArray[i] - yArray[i+1];
