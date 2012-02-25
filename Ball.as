@@ -108,7 +108,7 @@ package
 		
 		public function update (loop:int): void
 		{
-			if (respawn)
+			if (loop == 0 && respawn)
 			{
 				spawn();
 			}
@@ -120,6 +120,12 @@ package
 			if (vz > maxSpeed) {
 				vx *= maxSpeed / vz;
 				vy *= maxSpeed / vz;
+			}
+			
+			var minXSpeed:Number = 1;
+			
+			if (vx > -minXSpeed && vx < minXSpeed) {
+				vx = (vx < 0) ? -minXSpeed : minXSpeed;
 			}
 			
 			x1 = x;
@@ -154,6 +160,9 @@ package
 			if (test(0, 0, 0, 480, radius)) // left
 			{
 				game.score2.value += 1;
+				if (game.score2.value < Settings.targetScore) {
+					game.player1.newContinent();
+				}
 				
 				if (vx > 3)
 				{
@@ -166,6 +175,9 @@ package
 			if(test(640, 480, 640, 0, radius)) // right
 			{
 				game.score1.value += 1;
+				if (game.score1.value < Settings.targetScore) {
+					game.player2.newContinent();
+				}
 				
 				if (vx < -3)
 				{
@@ -190,6 +202,23 @@ package
 			
 			x = x2;// - 0.01 * vx;
 			y = y2;// - 0.01 * vy;
+			
+			if (trail.circles.length > 10) {
+				var stuck:Boolean = true;
+			
+				for each (var t:DisplayObject in trail.circles) {
+					var dx:Number = t.x - x;
+					var dy:Number = t.y - y;
+				
+					if (dx*dx + dy*dy > 5) {
+						stuck = false;
+					}
+				}
+			
+				if (stuck) {
+					respawn = true;
+				}
+			}
 			
 			if (loop == 0) {
 				trail.update(x,y);

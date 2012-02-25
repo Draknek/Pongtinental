@@ -19,7 +19,7 @@ package
 		
 		public static function create (paddle: Player, game: Game): Controller
 		{
-			if (game.attractMode)
+			//if (game.attractMode)
 			{
 				return new AIController(paddle, game);
 			}

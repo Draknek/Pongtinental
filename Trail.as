@@ -7,14 +7,14 @@ package
 	public class Trail extends Sprite
 	{
 	    private var delay_length:int;
-	    private var trail_length:int;
+	    public var trail_length:int;
 	    private var size:int;
 	    
 	    private var delay_counter:int;
 	    private var current_end_circle:int;
 	    
 	    
-	    private var circles:Array;
+	    public var circles:Array;
 	
 	    public function Trail(x:Number,y:Number)
 	    {
