@@ -63,6 +63,7 @@ package
 			if (Main.continents) return;
 			
 			Main.continents = {};
+			Main.continentNames = [];
 			
 			ProcessExecutor.instance.initialize(Main.instance.stage);
 			
@@ -90,6 +91,7 @@ package
 					continent.@style += "; display:none;";
 				} else {
 					id = continent.@id;
+					Main.continentNames.push(id);
 					Main.continents[id] = bitmap = new BitmapData(640, 480, true, 0x0);
 				}
 			}

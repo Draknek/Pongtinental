@@ -2,8 +2,9 @@ package
 {
 	import flash.display.*;
 	import flash.events.*;
+	import flash.geom.*;
 	
-	public class Player extends Shape
+	public class Player extends Sprite
 	{
 		public var size: Number = 30;
 		public var speed: Number = 5;
@@ -16,11 +17,29 @@ package
 		
 		public function Player (_x: Number, _game: Game)
 		{
-			graphics.lineStyle(4, 0x00FF00);
-			graphics.moveTo(0, -size);
-			graphics.lineTo(0, size);
-			
 			game = _game;
+			
+			if (game.attractMode) {
+				graphics.lineStyle(4, 0x00FF00);
+				graphics.moveTo(0, -size);
+				graphics.lineTo(0, size);
+			} else {
+				var i:int = Math.random() * Main.continentNames.length;
+				var continent:String = Main.continentNames[i];
+				
+				var bitmap:BitmapData = Main.continents[continent];
+				
+				var image:Bitmap = new Bitmap(bitmap);
+				
+				var bounds:Rectangle = bitmap.getColorBoundsRect(0xFFFFFFFF, 0x000000, false);
+				
+				var side:int = (_x < 320) ? 0 : 1;
+				
+				image.x = -bounds.x - side * bounds.width;
+				image.y = -bounds.y - bounds.height * 0.5;
+				
+				addChild(image);
+			}
 			
 			x = _x;
 			y = 240;

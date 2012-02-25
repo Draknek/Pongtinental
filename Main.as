@@ -18,6 +18,7 @@ package
 		public static var level: *;
 		
 		public static var continents:Object;
+		public static var continentNames:Array;
 		
 		public static function set screen (newScreenObj: Screen): void
 		{
