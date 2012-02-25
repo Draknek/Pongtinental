@@ -147,7 +147,7 @@ package
 		{
 			TweenLite.to(this, 5.0, {vol: 0.0, onComplete: channel.stop});
 			
-			addChild(new MyTextField(320, 180, message, "center", 50));
+			addChild(new MyTextField(320, 180, message, "center", 45));
 			
 			gameOver = true;
 			
