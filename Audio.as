@@ -23,7 +23,7 @@ package
 		{
 			// Setup
 			
-			so = SharedObject.getLocal("audio");
+			/*so = SharedObject.getLocal("audio");
 			
 			_mute = so.data.mute;
 			
@@ -33,7 +33,7 @@ package
 				addKeyListener(o.stage);
 			} else {
 				o.addEventListener(Event.ADDED_TO_STAGE, stageAdd);
-			}
+			}*/
 			
 			// Create sounds
 			
