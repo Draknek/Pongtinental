@@ -33,6 +33,11 @@ package
 			
 			//addChild(new MyTextField(320, 300, "Press any key to begin", "center", 27));
 			
+			initContinents();
+		}
+		
+		public function addButtons ():void
+		{
 			var playButton: Button = new Button("Play", 54);
 			
 			playButton.x = 320 - playButton.width / 2;
@@ -40,7 +45,7 @@ package
 			
 			playButton.addEventListener(MouseEvent.CLICK, function (param:*=null):void {Main.screen = new Game(false);});
 			
-			//addChild(playButton);
+			addChild(playButton);
 			
 			var settingsButton: Button = new Button("Settings", 54);
 			
@@ -51,7 +56,6 @@ package
 			
 			//addChild(settingsButton);
 			
-			initContinents();
 		}
 		
 		public function initContinents (): void
@@ -96,6 +100,8 @@ package
 				loading.parent.removeChild(loading);
 				
 				TweenLite.to(earth, 1.0, {alpha: 0.5});
+				
+				addButtons();
 				
 				return;
 			}
