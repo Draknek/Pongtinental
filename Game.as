@@ -72,39 +72,41 @@ package
 				line.update();
 			}
 			
-			var collisions:Array = _collisionList.checkCollisions();
+			for (var j:int = 0; j < 2; j++) {
+				var collisions:Array = _collisionList.checkCollisions();
 			
-			for(var i:int = 0; i < collisions.length; i++)
-			{
-				var collision:Object = collisions[i];
+				for(var i:int = 0; i < collisions.length; i++)
+				{
+					var collision:Object = collisions[i];
 			
-				var angle:Number = collision.angle;
-				var overlap:int = collision.overlapping.length;
-				//var ball:Ball = collision.object2;
+					var angle:Number = collision.angle;
+					var overlap:int = collision.overlapping.length;
+					//var ball:Ball = collision.object2;
 		
-				var sin:Number = Math.sin(angle);
-				var cos:Number = Math.cos(angle);
+					var sin:Number = Math.sin(angle);
+					var cos:Number = Math.cos(angle);
 					
-				/*var vx0:Number = ball.vx * cos + ball.vy * sin;
-				var vy0:Number = ball.vy * cos - ball.vx * sin;
+					/*var vx0:Number = ball.vx * cos + ball.vy * sin;
+					var vy0:Number = ball.vy * cos - ball.vx * sin;
 		
-				//vx0 = .4;
+					//vx0 = .4;
 				
-				trace(overlap);
+					trace(overlap);
 				
-				vx0 *= 1.1;
+					vx0 *= 1.1;
 				
-				ball.vx = 0;//vx0 * cos - vy0 * sin;
-				ball.vy = 0;//vy0 * cos + vx0 * sin;*/
+					ball.vx = 0;//vx0 * cos - vy0 * sin;
+					ball.vy = 0;//vy0 * cos + vx0 * sin;*/
 				
-				ball.vx -= cos * overlap / ball.radius;
-				ball.vy -= sin * overlap / ball.radius;
+					ball.vx -= cos * overlap / ball.radius;
+					ball.vy -= sin * overlap / ball.radius;
 				
-				//ball.x += cos * overlap;
-				//ball.y += sin * overlap;
-			}
+					//ball.x += cos * overlap;
+					//ball.y += sin * overlap;
+				}
 			
-			ball.update();
+				ball.update(j);
+			}
 			
 			if (attractMode)
 			{
@@ -136,7 +138,7 @@ package
 		{
 			stage.removeEventListener(KeyboardEvent.KEY_DOWN, gameOverkeyDownListener);
 			
-			Main.screen = new MainMenu();
+			Main.screen = MainMenu.instance;
 		}
 	}
 }

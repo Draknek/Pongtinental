@@ -44,10 +44,17 @@ package
 			x = 320;
 			y = 240;
 			
+			if (game.attractMode) {
+				y = 160;
+			}
+			
 			vx = Math.random() * 2 + 3;
 			vx *= (Math.random() < 0.5) ? -1 : 1;
 			
 			vy = Math.random() * 6 - 3;
+			
+			vx *= 0.5;
+			vy *= 0.5;
 		}
 		
 		private function test (ax: Number, ay: Number, bx: Number, by: Number, r: Number = 6): Boolean
@@ -99,11 +106,20 @@ package
 			return false;
 		}
 		
-		public function update (): void
+		public function update (loop:int): void
 		{
 			if (respawn)
 			{
 				spawn();
+			}
+			
+			var vz:Number = Math.sqrt(vx*vx + vy*vy);
+			
+			var maxSpeed:Number = 4;
+			
+			if (vz > maxSpeed) {
+				vx *= maxSpeed / vz;
+				vy *= maxSpeed / vz;
 			}
 			
 			x1 = x;
@@ -175,7 +191,9 @@ package
 			x = x2;// - 0.01 * vx;
 			y = y2;// - 0.01 * vy;
 			
-			trail.update(x,y);
+			if (loop == 0) {
+				trail.update(x,y);
+			}
 		}
 	}
 }

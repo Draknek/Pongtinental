@@ -21,8 +21,14 @@ package
 		
 		public var loading:MyTextField;
 		
+		public var earth:Sprite;
+		
+		public static var instance:MainMenu;
+		
 		public function MainMenu ()
 		{
+			instance = this;
+			
 			demoGame = new Game(true);
 			
 			demoGame.alpha = 0.5;
@@ -67,7 +73,7 @@ package
 			
 			ProcessExecutor.instance.initialize(Main.instance.stage);
 			
-			var earth:Sprite = new Sprite;
+			earth = new Sprite;
 			
 			earth.y = 200;
 			
@@ -111,8 +117,13 @@ package
 			function complete ():void
 			{
 				bitmap.draw(svg);
-				earth.addChild(new Bitmap(bitmap));
+				
+				var image:Bitmap = new Bitmap(bitmap);
+				
+				earth.addChild(image);
 				earth.removeChild(svg);
+				
+				demoGame._collisionList.addItem(image);
 				
 				initNextContinent(earth);
 			}
