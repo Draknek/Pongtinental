@@ -44,14 +44,29 @@ package
 		
 		public function addButtons ():void
 		{
-			var playButton: Button = new Button("Play", 54);
+			var playButton: Button = new Button("Single player", 54);
 			
 			playButton.x = 320 - playButton.width / 2;
-			playButton.y = 250;
+			playButton.y = 200;
 			
-			playButton.addEventListener(MouseEvent.CLICK, function (param:*=null):void {Main.screen = new Game(false);});
+			playButton.addEventListener(MouseEvent.CLICK, function (param:*=null):void {
+				Settings.player1Controller = "AI";
+				Main.screen = new Game(false);
+			});
 			
 			addChild(playButton);
+			
+			var play2Button: Button = new Button("Multiplayer", 54);
+			
+			play2Button.x = 320 - playButton.width / 2;
+			play2Button.y = 300;
+			
+			play2Button.addEventListener(MouseEvent.CLICK, function (param:*=null):void {
+				Settings.player1Controller = "Keyboard";
+				Main.screen = new Game(false);
+			});
+			
+			addChild(play2Button);
 			
 			var settingsButton: Button = new Button("Settings", 54);
 			
