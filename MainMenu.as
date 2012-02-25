@@ -47,7 +47,7 @@ package
 			var playButton: Button = new Button("Play", 54);
 			
 			playButton.x = 320 - playButton.width / 2;
-			playButton.y = 200;
+			playButton.y = 250;
 			
 			playButton.addEventListener(MouseEvent.CLICK, function (param:*=null):void {Main.screen = new Game(false);});
 			
