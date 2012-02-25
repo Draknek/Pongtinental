@@ -3,8 +3,10 @@ package
 	import flash.display.*;
 	import flash.events.*;
 	import flash.ui.*;
+	import flash.media.*;
 	
 	import com.coreyoneil.collision.CollisionList;
+	import com.greensock.*;
 	
 	public class Game extends Screen
 	{
@@ -23,6 +25,11 @@ package
 		public var lines:Array = [];
 		
 		public var _collisionList:CollisionList;
+		
+		public var channel:SoundChannel;
+		public var thisSoundTransform:SoundTransform;
+		
+		public var vol:Number = 0.5;
 		
 		public function Game (_attractMode: Boolean = false)
 		{
@@ -46,6 +53,9 @@ package
 			{
 				addChild(score1);
 				addChild(score2);
+				
+				thisSoundTransform = new SoundTransform(vol);
+				channel = Audio.music.play(0, int.MAX_VALUE, thisSoundTransform);
 			}
 			
 			ball = new Ball(this);
@@ -60,8 +70,14 @@ package
 		
 		public override function update (): void
 		{
+			if (channel && channel.soundTransform) {
+				thisSoundTransform.volume = vol;
+				channel.soundTransform = thisSoundTransform;
+			}
+			
 			if (gameOver)
 			{
+				TweenLite.to(this, 5.0, {vol: 0.0, delay: 0.5, onComplete: channel.stop});
 				return;
 			}
 			
@@ -103,6 +119,10 @@ package
 				
 					//ball.x += cos * overlap;
 					//ball.y += sin * overlap;
+					
+					vol = 1.5;
+					
+					TweenLite.to(this, 1.0, {vol: 0.5, delay: 0.5});
 				}
 			
 				ball.update(j);

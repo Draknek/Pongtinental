@@ -83,6 +83,8 @@ package
 		{
 			if (Main.continents) return;
 			
+			Audio.init(Main.instance);
+			
 			Main.continents = {};
 			Main.continentNames = [];
 			

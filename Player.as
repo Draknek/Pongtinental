@@ -3,6 +3,7 @@ package
 	import flash.display.*;
 	import flash.events.*;
 	import flash.geom.*;
+	import com.greensock.*;
 	
 	public class Player extends Sprite
 	{
@@ -39,6 +40,8 @@ package
 		
 		public function newContinent ():void
 		{
+			if (game.attractMode) return;
+			
 			if (image) {
 				removeChild(image);
 			}
@@ -62,6 +65,10 @@ package
 			x -= side * bounds.width * 0.5;
 			
 			addChild(image);
+			
+			game.vol = 0.1;
+			
+			TweenLite.to(game, 1.0, {vol: 0.5, delay: 1.0});
 		}
 		
 		public function update (): void
