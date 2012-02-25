@@ -51,8 +51,8 @@ package
 			
 			if (! attractMode)
 			{
-				addChild(score1);
-				addChild(score2);
+				//addChild(score1);
+				//addChild(score2);
 				
 				thisSoundTransform = new SoundTransform(vol);
 				channel = Audio.music.play(0, int.MAX_VALUE, thisSoundTransform);

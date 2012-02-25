@@ -18,6 +18,11 @@ package
 		
 		public var image:Bitmap;
 		
+		public var livesContainer:Sprite;
+		public var lives:Object = {};
+		
+		public var continent:String;
+		
 		public function Player (_x: Number, _game: Game)
 		{
 			game = _game;
@@ -32,10 +37,25 @@ package
 				graphics.moveTo(0, -size);
 				graphics.lineTo(0, size);
 			} else {
+				livesContainer = new Sprite;
+			
+				livesContainer.x = (x < 320) ? 0 : 640 - Main.continentsSmall[Main.continentNames[0]].width;
+				livesContainer.y = 10;
+			
+				livesContainer.alpha = 0.5;
+			
+				game.addChild(livesContainer);
+			
+				for each (var id:String in Main.continentNames) {
+					lives[id] = new Bitmap(Main.continentsSmall[id]);
+					livesContainer.addChild(lives[id]);
+				}
+				
 				newContinent();
 			}
 			
 			controller = Controller.create(this, game);
+			
 		}
 		
 		public function newContinent ():void
@@ -44,12 +64,17 @@ package
 			
 			if (image) {
 				removeChild(image);
+				TweenLite.to(lives[continent], 0.5, {alpha: 0});
+				lives[continent] = null;
 			}
 			
 			var side:int = (x < 320) ? -1 : 1;
-			
-			var i:int = Math.random() * Main.continentNames.length;
-			var continent:String = Main.continentNames[i];
+
+			do {
+				var i:int = Math.random() * Main.continentNames.length;
+				continent = Main.continentNames[i];
+			}
+			while (! lives[continent]);
 			
 			var bitmap:BitmapData = Main.continents[continent];
 			

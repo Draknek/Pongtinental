@@ -19,7 +19,7 @@ package
 		
 		public static var linesHitEachOther: Boolean = true;
 		
-		public static var targetScore: uint = 5;
+		public static var targetScore: uint = 6;
 	}
 }
 

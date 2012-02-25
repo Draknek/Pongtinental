@@ -87,6 +87,7 @@ package
 			
 			Main.continents = {};
 			Main.continentNames = [];
+			Main.continentsSmall = {};
 			
 			ProcessExecutor.instance.initialize(Main.instance.stage);
 			
@@ -134,6 +135,16 @@ package
 			function complete ():void
 			{
 				bitmap.draw(svg);
+				
+				var scale:Number = 5;
+				
+				var small:BitmapData = new BitmapData(640/scale, 480/scale, true, 0x0);
+				
+				svg.scaleX = svg.scaleY = 1.0 / scale;
+				
+				small.draw(svg, svg.transform.matrix);
+				
+				Main.continentsSmall[id] = small;
 				
 				var image:Bitmap = new Bitmap(bitmap);
 				
