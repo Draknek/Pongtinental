@@ -77,7 +77,6 @@ package
 			
 			if (gameOver)
 			{
-				TweenLite.to(this, 5.0, {vol: 0.0, delay: 0.5, onComplete: channel.stop});
 				return;
 			}
 			
@@ -120,7 +119,7 @@ package
 					//ball.x += cos * overlap;
 					//ball.y += sin * overlap;
 					
-					vol = 1.5;
+					vol = 1.0;
 					
 					TweenLite.to(this, 1.0, {vol: 0.5, delay: 0.5});
 				}
@@ -146,6 +145,8 @@ package
 		
 		private function endGame (message: String): void
 		{
+			TweenLite.to(this, 5.0, {vol: 0.0, onComplete: channel.stop});
+			
 			addChild(new MyTextField(320, 180, message, "center", 50));
 			
 			gameOver = true;
