@@ -17,7 +17,7 @@ package
 		{
 			var t: Number = (game.ball.x - paddle.x) / -game.ball.vx;
 			
-			if (t > 65 || t < 0) { return; }
+			if (t > 100 || t < 0) { return; }
 			
 			targetY += (game.ball.y + game.ball.vy * t - targetY) * (1 - t * 0.005) * 0.5;
 		}

@@ -33,10 +33,12 @@ package
 				
 				var bounds:Rectangle = bitmap.getColorBoundsRect(0xFFFFFFFF, 0x000000, false);
 				
-				var side:int = (_x < 320) ? 0 : 1;
+				var side:int = (_x < 320) ? -1 : 1;
 				
-				image.x = -bounds.x - side * bounds.width;
+				image.x = -bounds.x - bounds.width * 0.5;
 				image.y = -bounds.y - bounds.height * 0.5;
+				
+				_x -= side * bounds.width * 0.5;
 				
 				addChild(image);
 			}
