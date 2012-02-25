@@ -31,12 +31,6 @@ package
 			score1 = new NumberTextField(180, 0, "", "center", 100);
 			score2 = new NumberTextField(460, 0, "", "center", 100);
 			
-			if (! attractMode)
-			{
-				addChild(score1);
-				addChild(score2);
-			}
-			
 			/*lineBall = new LineBall(this);
 			addChild(lineBall.canvas);
 			
@@ -47,6 +41,12 @@ package
 			
 			addChild(player1);
 			addChild(player2);
+			
+			if (! attractMode)
+			{
+				addChild(score1);
+				addChild(score2);
+			}
 			
 			ball = new Ball(this);
 			addChild(ball);
@@ -127,18 +127,43 @@ package
 		private function endGame (message: String): void
 		{
 			addChild(new MyTextField(320, 180, message, "center", 50));
-			addChild(new MyTextField(320, 260, "Press any key", "center", 25));
 			
 			gameOver = true;
 			
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, gameOverkeyDownListener, false, 0, true);
+			
+			var playButton: Button = new Button("Rematch", 54);
+			
+			playButton.x = 320 - playButton.width / 2;
+			playButton.y = 300;
+			
+			playButton.addEventListener(MouseEvent.CLICK, function (param:*=null):void {
+				stage.removeEventListener(KeyboardEvent.KEY_DOWN, gameOverkeyDownListener);
+				Main.screen = new Game(false);
+			});
+			
+			addChild(playButton);
+			
+			var play2Button: Button = new Button("Menu", 54);
+			
+			play2Button.x = 320 - playButton.width / 2;
+			play2Button.y = 380;
+			
+			play2Button.addEventListener(MouseEvent.CLICK, function (param:*=null):void {
+				stage.removeEventListener(KeyboardEvent.KEY_DOWN, gameOverkeyDownListener);
+				Main.screen = MainMenu.instance;
+			});
+			
+			addChild(play2Button);
 		}
 		
 		private function gameOverkeyDownListener (ev: KeyboardEvent): void
 		{
-			stage.removeEventListener(KeyboardEvent.KEY_DOWN, gameOverkeyDownListener);
+			if (ev.keyCode == 32) {
+				stage.removeEventListener(KeyboardEvent.KEY_DOWN, gameOverkeyDownListener);
 			
-			Main.screen = MainMenu.instance;
+				Main.screen = new Game;
+			}
 		}
 	}
 }
