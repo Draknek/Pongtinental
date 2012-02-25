@@ -4,6 +4,8 @@ package
 	import flash.events.*;
 	import flash.ui.*;
 	
+	import com.coreyoneil.collision.CollisionList;
+	
 	public class Game extends Screen
 	{
 		public var player1: Player;
@@ -19,6 +21,8 @@ package
 		public var attractMode: Boolean = false;
 		
 		public var lines:Array = [];
+		
+		public var _collisionList:CollisionList;
 		
 		public function Game (_attractMode: Boolean = false)
 		{
@@ -47,6 +51,11 @@ package
 			ball = new Ball(this);
 			addChild(ball);
 			addChild(ball.trail);
+			
+			_collisionList = new CollisionList(ball);
+			
+			_collisionList.addItem(player1);
+			_collisionList.addItem(player2);
 		}
 		
 		public override function update (): void
@@ -61,6 +70,38 @@ package
 			
 			for each (var line:LineBall in lines) {
 				line.update();
+			}
+			
+			var collisions:Array = _collisionList.checkCollisions();
+			
+			for(var i:int = 0; i < collisions.length; i++)
+			{
+				var collision:Object = collisions[i];
+			
+				var angle:Number = collision.angle;
+				var overlap:int = collision.overlapping.length;
+				//var ball:Ball = collision.object2;
+		
+				var sin:Number = Math.sin(angle);
+				var cos:Number = Math.cos(angle);
+					
+				/*var vx0:Number = ball.vx * cos + ball.vy * sin;
+				var vy0:Number = ball.vy * cos - ball.vx * sin;
+		
+				//vx0 = .4;
+				
+				trace(overlap);
+				
+				vx0 *= 1.1;
+				
+				ball.vx = 0;//vx0 * cos - vy0 * sin;
+				ball.vy = 0;//vy0 * cos + vx0 * sin;*/
+				
+				ball.vx -= cos * overlap / ball.radius;
+				ball.vy -= sin * overlap / ball.radius;
+				
+				//ball.x += cos * overlap;
+				//ball.y += sin * overlap;
 			}
 			
 			ball.update();

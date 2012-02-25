@@ -22,12 +22,14 @@ package
 		
 		public var trail: Trail;
 		
+		public var radius:Number = 4;
+		
 		public function Ball (_game: Game)
 		{
 			game = _game;
 			
 			graphics.beginFill(0xFFFFFF);
-			graphics.drawCircle(0, 0, 4);
+			graphics.drawCircle(0, 0, radius);
 			graphics.endFill();
 			
 			spawn();
@@ -113,7 +115,7 @@ package
 			var p1: Player = game.player1;
 			var p2: Player = game.player2;
 			
-			if (test(p1.x, p1.top, p1.x, p1.bottom, 6))
+			/*if (test(p1.x, p1.top, p1.x, p1.bottom, radius + 2))
 			{
 				var diff: Number = contact.y - p1.y;
 				
@@ -123,7 +125,7 @@ package
 				vx += 0.25;
 			}
 			
-			if(test(p2.x, p2.top, p2.x, p2.bottom, 6))
+			if(test(p2.x, p2.top, p2.x, p2.bottom, radius + 2))
 			{
 				diff = contact.y - p2.y;
 				
@@ -131,9 +133,9 @@ package
 				vy -= p2.vy * 0.1;
 				
 				vx -= 0.25;
-			}
+			}*/
 			
-			if (test(0, 0, 0, 480, 4)) // left
+			if (test(0, 0, 0, 480, radius)) // left
 			{
 				game.score2.value += 1;
 				
@@ -145,7 +147,7 @@ package
 				respawn = true;
 			}
 			
-			if(test(640, 480, 640, 0, 4)) // right
+			if(test(640, 480, 640, 0, radius)) // right
 			{
 				game.score1.value += 1;
 				
@@ -157,8 +159,8 @@ package
 				respawn = true;
 			}
 			
-			test(0, 480, 640, 480, 4); // bottom
-			test(640, 0, 0, 0, 4); // top
+			test(0, 480, 640, 480, radius); // bottom
+			test(640, 0, 0, 0, radius); // top
 			
 			for each (var lineBall:LineBall in game.lines) {
 				var xArr: Array = lineBall.xArray;
