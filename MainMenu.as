@@ -58,7 +58,7 @@ package
 			
 			var play2Button: Button = new Button("Multiplayer", 54);
 			
-			play2Button.x = 320 - playButton.width / 2;
+			play2Button.x = 320 - play2Button.width / 2;
 			play2Button.y = 300;
 			
 			play2Button.addEventListener(MouseEvent.CLICK, function (param:*=null):void {

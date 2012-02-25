@@ -147,7 +147,11 @@ package
 		{
 			TweenLite.to(this, 5.0, {vol: 0.0, onComplete: channel.stop});
 			
-			addChild(new MyTextField(320, 180, message, "center", 45));
+			var text:MyTextField = new MyTextField(320, 180, message, "left", 54);
+			
+			text.x = 320 - text.width / 2;
+			
+			addChild(text);
 			
 			gameOver = true;
 			
@@ -167,7 +171,7 @@ package
 			
 			var play2Button: Button = new Button("Menu", 54);
 			
-			play2Button.x = 320 - playButton.width / 2;
+			play2Button.x = 320 - play2Button.width / 2;
 			play2Button.y = 380;
 			
 			play2Button.addEventListener(MouseEvent.CLICK, function (param:*=null):void {

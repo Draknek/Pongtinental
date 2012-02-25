@@ -10,7 +10,7 @@ package
 		
 		public function Button (_text: String, _textSize: Number = 16, _width: Number = 0, _colour: int = 0x000000)
 		{
-			textField = new MyTextField(10, 5, _text, "center", _textSize);
+			textField = new MyTextField(10, 5, _text, "left", _textSize);
 			
 			var _height: Number = textField.height + 10;
 			
@@ -24,7 +24,7 @@ package
 			graphics.drawRect(0, 0, _width, _height);
 			graphics.endFill();
 			
-			graphics.lineStyle(4, 0x000000);
+			graphics.lineStyle(4, 0xffffff);
 			graphics.drawRect(0, 0, _width, _height);*/
 			
 			buttonMode = true;
