@@ -5,10 +5,8 @@ package
 	
 	public class MyTextField extends TextField
 	{
-		[Embed(source="fonts/pixelhugger.ttf", fontName='pixelhugger', mimeType='application/x-font')]
-		public static var PixelHuggerFontSrc : Class;
-		
-		public static var pixelHuggerFont : Font = new PixelHuggerFontSrc();
+		[Embed(source="fonts/albach.ttf", fontName='mydefault', mimeType='application/x-font')]
+		public static var FontSrc : Class;
 		
 		public function MyTextField (_x: Number, _y: Number, _text: String, _align: String = TextFieldAutoSize.CENTER, textSize: Number = 16, _fontName: String = null)
 		{
@@ -22,7 +20,7 @@ package
 			
 			if (! _fontName)
 			{
-				_fontName = pixelHuggerFont.fontName;
+				_fontName = "mydefault";
 			}
 			
 			var _textFormat : TextFormat = new TextFormat(_fontName, textSize);

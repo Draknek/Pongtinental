@@ -35,7 +35,7 @@ package
 			
 			addChild(demoGame);
 			
-			addChild(new MyTextField(320, 20, "Pongtinental", "center", 99));
+			addChild(new MyTextField(320, 30, "Pongtinental", "center", 104));
 			
 			//addChild(new MyTextField(320, 300, "Press any key to begin", "center", 27));
 			
@@ -44,7 +44,7 @@ package
 		
 		public function addButtons ():void
 		{
-			var playButton: Button = new Button("Single player", 54);
+			var playButton: Button = new Button("Single player", 56);
 			
 			playButton.x = 320 - playButton.width / 2;
 			playButton.y = 200;
@@ -56,7 +56,7 @@ package
 			
 			addChild(playButton);
 			
-			var play2Button: Button = new Button("Multiplayer", 54);
+			var play2Button: Button = new Button("Multiplayer", 56);
 			
 			play2Button.x = 320 - play2Button.width / 2;
 			play2Button.y = 300;
@@ -68,7 +68,7 @@ package
 			
 			addChild(play2Button);
 			
-			var settingsButton: Button = new Button("Settings", 54);
+			var settingsButton: Button = new Button("Settings", 56);
 			
 			settingsButton.x = 320 - settingsButton.width / 2;
 			settingsButton.y = 275;
@@ -97,7 +97,7 @@ package
 			
 			addChild(earth);
 			
-			addChild(loading = new MyTextField(320, 420, "Loading...", "center", 36));
+			addChild(loading = new MyTextField(320, 420, "Loading...", "center", 32));
 			
 			initNextContinent(earth);
 		}

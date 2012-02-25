@@ -134,12 +134,12 @@ package
 			
 			if (score1.value >= Settings.targetScore)
 			{
-				endGame("Left wins!");
+				endGame("Left wins");
 			}
 			
 			if (score2.value >= Settings.targetScore)
 			{
-				endGame("Right wins!");
+				endGame("Right wins");
 			}
 		}
 		
@@ -147,7 +147,7 @@ package
 		{
 			TweenLite.to(this, 5.0, {vol: 0.0, onComplete: channel.stop});
 			
-			var text:MyTextField = new MyTextField(320, 180, message, "left", 54);
+			var text:MyTextField = new MyTextField(320, 180, message, "left", 56);
 			
 			text.x = 320 - text.width / 2;
 			
@@ -157,7 +157,7 @@ package
 			
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, gameOverkeyDownListener, false, 0, true);
 			
-			var playButton: Button = new Button("Rematch", 54);
+			var playButton: Button = new Button("Rematch", 56);
 			
 			playButton.x = 320 - playButton.width / 2;
 			playButton.y = 300;
@@ -169,7 +169,7 @@ package
 			
 			addChild(playButton);
 			
-			var play2Button: Button = new Button("Menu", 54);
+			var play2Button: Button = new Button("Menu", 56);
 			
 			play2Button.x = 320 - play2Button.width / 2;
 			play2Button.y = 380;
