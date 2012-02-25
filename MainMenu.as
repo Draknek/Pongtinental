@@ -8,6 +8,8 @@ package
 	import com.lorentz.SVG.display.*;
 	import com.lorentz.SVG.events.*;
 	
+	import com.greensock.*;
+	
 	public class MainMenu extends Screen
 	{
 		private var demoGame: Game;
@@ -16,8 +18,6 @@ package
 		
 		[Embed(source="images/continents.svg", mimeType="application/octet-stream")]
 		public static const CONTINENTS:Class;
-		
-		public static var continents:Object;
 		
 		public var loading:MyTextField;
 		
@@ -56,9 +56,9 @@ package
 		
 		public function initContinents (): void
 		{
-			if (continents) return;
+			if (Main.continents) return;
 			
-			continents = {};
+			Main.continents = {};
 			
 			ProcessExecutor.instance.initialize(Main.instance.stage);
 			
@@ -82,11 +82,11 @@ package
 			var bitmap:BitmapData;
 			
 			for each (var continent:XML in xml.g) {
-				if (continents[continent.@id] || id) {
+				if (Main.continents[continent.@id] || id) {
 					continent.@style += "; display:none;";
 				} else {
 					id = continent.@id;
-					continents[id] = bitmap = new BitmapData(640, 480, true, 0x0);
+					Main.continents[id] = bitmap = new BitmapData(640, 480, true, 0x0);
 				}
 			}
 			
@@ -95,7 +95,7 @@ package
 				
 				loading.parent.removeChild(loading);
 				
-				earth.alpha = 0.5;
+				TweenLite.to(earth, 1.0, {alpha: 0.5});
 				
 				return;
 			}
