@@ -24,6 +24,8 @@ package
 		
 		public var radius:Number = 4;
 		
+		public var stuckTimer:int = 0;
+		
 		public function Ball (_game: Game)
 		{
 			game = _game;
@@ -210,13 +212,18 @@ package
 					var dx:Number = t.x - x;
 					var dy:Number = t.y - y;
 				
-					if (dx*dx + dy*dy > 5) {
+					if (dx*dx + dy*dy > 200) {
 						stuck = false;
 					}
 				}
 			
 				if (stuck) {
-					respawn = true;
+					if (stuckTimer > 90) {
+						respawn = true;
+					}
+					stuckTimer++;
+				} else {
+					stuckTimer = 0;
 				}
 			}
 			
