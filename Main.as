@@ -73,9 +73,9 @@ package
 		
 		private function startup (): void
 		{
-			//var mainClass:Class = getDefinitionByName("MainMenu") as Class;
+			var mainClass:Class = getDefinitionByName("MainMenu") as Class;
 			
-			screen = new MainMenu(); //new mainClass() as Screen;
+			screen = new mainClass() as Screen;
 		}
 	}
 }
